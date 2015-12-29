@@ -10,7 +10,7 @@ public class Calc {
 	}
 
 	public static int minimum(Collection<Integer> zahlen) {
-		return zahlen.stream().reduce(Integer.MAX_VALUE, Integer::min);
+		return zahlen.stream().min(Integer::compare).orElse(Integer.MAX_VALUE);
 	}
 
 }
