@@ -6,6 +6,11 @@ import org.junit.Test;
 
 public class MinimumTest {
 	@Test
+	public void minimumKinerZahlIstMaxInt() throws Exception {
+		assertEquals(Integer.MAX_VALUE, Calc.minimum());
+	}
+
+	@Test
 	public void minimumEinerZahlIstDieZahl() throws Exception {
 		assertEquals(2, Calc.minimum(2));
 		assertEquals(0, Calc.minimum(0));
