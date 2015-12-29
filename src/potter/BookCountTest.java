@@ -36,15 +36,12 @@ public class BookCountTest {
 
 	@Test
 	public void zweiMalDreiVerschiedeneBuecherHabenZweiTripel() {
-		assertEquals(2,
-				new BookCount(buch1, buch2, buch3, buch1, buch2, buch3)
-						.popTuples(3));
+		assertEquals(2, new BookCount(buch1, buch2, buch3, buch1, buch2, buch3).popTuples(3));
 	}
 
 	@Test
 	public void VieleVerschiedeneBuecherHabenMehrereTripel() {
-		BookCount bookCount = new BookCount(buch1, buch2, buch3, buch3, buch3,
-				buch1, buch2, buch3, buch1, buch2, buch2, buch3);
+		BookCount bookCount = new BookCount(buch1, buch2, buch3, buch3, buch3, buch1, buch2, buch3, buch1, buch2, buch2, buch3);
 		assertEquals(3, bookCount.popTuples(3));
 		assertEquals(0, bookCount.popTuples(3));
 		assertEquals(1, bookCount.popTuples(2));

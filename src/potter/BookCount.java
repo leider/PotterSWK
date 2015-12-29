@@ -1,41 +1,33 @@
 package potter;
 
-import static potter.MinimumTest.minimum;
+import static potter.Calc.minimum;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BookCount {
 
-	private Map<Buch, Integer> count = new HashMap<Buch, Integer>();
+	private Map<Buch, Integer> count = new HashMap<>();
 
 	public BookCount(Buch... bücher) {
 		for (Buch buch : bücher) {
-			if (!count.containsKey(buch)) {
-				count.put(buch, 0);
-			}
-			count.put(buch, count.get(buch) + 1);
+			count.merge(buch, 1, (v, newValue) -> v + 1);
 		}
+
 	}
 
 	public int popTuples(int size) {
-		if (count.size() < size)
+		if (count.size() < size) {
 			return 0;
-
-		int minimum = minimum(count.values().toArray(new Integer[0]));
-
-		Iterator<Buch> iterator = count.keySet().iterator();
-		while (iterator.hasNext()) {
-			Buch buch = iterator.next();
-			int newCount = count.get(buch) - minimum;
-			if (newCount > 0) {
-				count.put(buch, newCount);
-			} else {
-				iterator.remove();
-			}
 		}
-
+		int minimum = minimum(count.values());
+		count.replaceAll((k, v) -> v - minimum);
+		removeEmptyBooks();
 		return minimum;
+	}
+
+	private void removeEmptyBooks() {
+		count = count.keySet().stream().filter(buch -> count.get(buch) > 0).collect(Collectors.toMap(k -> k, k -> count.get(k)));
 	}
 }

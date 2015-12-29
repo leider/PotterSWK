@@ -43,18 +43,12 @@ public class PotterTest {
 
 	@Test
 	public void dreiUndFünfBücherKostenEiniges() {
-		assertEquals(
-				3 * 15.20 + 16,
-				preisVon(Buch.buch2, Buch.buch1, Buch.buch2, Buch.buch1,
-						Buch.buch2, Buch.buch1, Buch.buch2, Buch.buch2), 0.0);
+		assertEquals(3 * 15.20 + 16, preisVon(Buch.buch2, Buch.buch1, Buch.buch2, Buch.buch1, Buch.buch2, Buch.buch1, Buch.buch2, Buch.buch2), 0.0);
 	}
 
 	@Test
 	public void vieleBücherKostenEiniges() {
-		assertEquals(
-				2 * 4 * 8 * 0.8,
-				preisVon(Buch.buch1, Buch.buch2, Buch.buch3, Buch.buch4,
-						Buch.buch5, Buch.buch1, Buch.buch2, Buch.buch3), 0.0);
+		assertEquals(2 * 4 * 8 * 0.8, preisVon(Buch.buch1, Buch.buch2, Buch.buch3, Buch.buch4, Buch.buch5, Buch.buch1, Buch.buch2, Buch.buch3), 0.0);
 	}
 
 	private double preisVon(Buch... bücher) {
@@ -66,7 +60,7 @@ public class PotterTest {
 		int anzahlPaare = bookCount.popTuples(2);
 		int anzahlEinzelne = bookCount.popTuples(1);
 
-		int neueVierer = MinimumTest.minimum(anzahlQuintupel, anzahlTripel);
+		int neueVierer = Calc.minimum(anzahlQuintupel, anzahlTripel);
 
 		anzahlQuintupel -= neueVierer;
 		anzahlQuadrupel += 2 * neueVierer;
